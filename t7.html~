@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="d3.min.js"></script>
+<script src="topojson.min.js"></script>
+<script src="dist/datamaps.usa.min.js"></script>
+<h2>Most popular restaurants </h2>
+<div id="map_election" style="position: relative; width: 900px; height: 600px;"></div>
+<script>
+    var election = new Datamap({
+  
+  element: document.getElementById('map_election'),
+    scope:'usa',
+    projection: 'mercator', //style of projection to be used. try "mercator"
+    height: null, //if not null, datamaps will grab the height of 'element'
+    width: null, //
+  
+  geographyConfig: {
+    highlightBorderColor: '#bada55',
+   popupTemplate: function(geography, data) {
+      return "<div class='hoverinfo'><strong>" + geography.properties.name + " : " +  data.electoralVotes + "</strong></div>";
+    },
+    highlightBorderWidth: 3
+  },
+
+  fills: {
+  'Republican': '#CC4731',
+  'Democrat': '#306596',
+  'Heavy Democrat': '#667FAF',
+  'Light Democrat': '#A9C0DE',
+  'Heavy Republican': '#CA5E5B',
+  'Light Republican': '#EAA9A8',
+  defaultFill: '#EDDC4E'
+},
+data:{
+  "AZ": {
+      "fillKey": "Republican",
+      "electoralVotes": 'Four Peaks Brewing'
+  },
+
+  "IL": {
+      "fillKey": "Republican",
+      "electoralVotes": "Black Dog Smoke and Ale House"
+  },
+ 
+  "NC": {
+      "fillKey": "Democrat",
+      "electoralVotes": "The Cow Fish Sushi Burger Bar"
+  },
+
+  "NV": {
+      "fillKey": "Republican",
+      "electoralVotes": "Earl of Sandwich"
+  },
+  "PA": {
+      "fillKey": "Democrat",
+      "electoralVotes": "Meat and Potatoes"
+  },
+
+  "SC": {
+      "fillKey": "Republican",
+      "electoralVotes": "Local Dish"
+  },
+  
+  "WI": {
+      "fillKey": "Democrat",
+      "electoralVotes": "The Old Fashioned"
+  },
+
+
+  "WA": {
+      "fillKey": "Heavy Democrat",
+      "electoralVotes": "Frank Paneno"
+  },
+ 
+  "CA": {
+      "fillKey": "Light Democrat",
+      "electoralVotes": "Rock A Hoola"
+  }
+}
+});
+election.labels();
+</script>
+
